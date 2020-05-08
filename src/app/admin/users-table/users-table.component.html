@@ -1,0 +1,21 @@
+<div class="py-5">
+    <div class="row">
+      <div class="col-md-6 mx-auto">
+        <div *ngFor="let user of users" class="card rounded-5 my-2 px-2" >
+           <div class="row">
+                <div class="col-8">
+                    <span style="display: block;">{{user.role}}</span>
+                    <span style="display: block;" >{{user.name}}</span>
+                </div>
+                <div class="col-4">
+                    <a style="display: block;" routerLink="../EditUser/{{user.name}}">Изменить</a>
+                    <button class="btn-danger" (click)="deleteUser(user.name)">Удалить</button>
+                </div>
+            </div>
+            <div *ngIf="errorsPresent">
+                <p style="color:red"> {{error.error.error}}</p> 
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
