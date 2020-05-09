@@ -44,4 +44,12 @@ export class EventsComponent implements OnInit {
       err=>console.log(err)
     )
   }
+
+  viewUser(userName:string){
+    this._eventService.getPostsByAuthor(userName).subscribe(
+      res=>{this.posts = res
+      console.log(res)},
+      err=>console.log(err)
+    )
+  }
 }

@@ -5,6 +5,7 @@
         <h3 class="card-title">{{post.name}}</h3>
         <h4 class="card-text">{{post.content | slice:0:20}}</h4>
         <h6> Автор - {{post.userName}}</h6>
+        <button class="btn-info" (click)="viewUser(post.userName)">Другие публикации автора</button> 
         <h6> {{post.tags[0].tagName}}</h6>
       </div>
       <div class="card-footer text-muted">

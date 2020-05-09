@@ -15,6 +15,7 @@ export class EventService {
   private _createPostUrl= "https://localhost:"+this.port.port+"/api/v1/posts"
   private _myPostUrl= "https://localhost:"+this.port.port+"/api/v1/posters/"
   private _postByTagUrl= "https://localhost:"+this.port.port+"/api/v1/postsByTag/"
+  private _postByAuthorUrl= "https://localhost:"+this.port.port+"/api/v1/posters/"
 
   constructor(private http: HttpClient) {  }
 
@@ -39,7 +40,11 @@ export class EventService {
   }
 
   getPostsByTag(tagName:string){
-    return this.http.get<Post[]>(this._postByTagUrl, {params: {tag: tagName}})
+    return this.http.get<Post[]>(this._postByTagUrl + tagName)
+  }
+
+  getPostsByAuthor(userName:string){
+    return this.http.get<Post[]>(this._postByAuthorUrl + userName)
   }
 
 }
