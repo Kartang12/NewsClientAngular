@@ -1,0 +1,24 @@
+<div class="py-5">
+    <div class="row">
+      <div class="col-md-6 mx-auto">
+        <div class="card rounded-0">
+          <div class="card-header">
+            <h3 class="mb-0">Редактирование профиля</h3>
+          </div>
+          <div class="card-body">
+            <form ngNativeValidate>
+              <div class="form-group">
+                <label for="uname1">Текущий email: {{oldName}}</label>
+                <input type="email" [(ngModel)]="data.Name" name="email" class="form-control rounded-0" required />
+              </div>
+              <div class="form-group">
+                <label>Пароль</label>
+                <input type="text" [(ngModel)]="data.Password" name="password" class="form-control rounded-0" required />
+              </div>
+              <button (click)="changeMe()" class="btn btn-success float-right">Изменить</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

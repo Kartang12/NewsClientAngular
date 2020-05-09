@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { UserData } from 'src/app/Models/UserData';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
-import {Observable} from 'rxjs';
 import { UserService} from '../../user.service';
 import { RolesService } from 'src/app/roles.service';
 import { Role } from 'src/app/Models/Role';
+import {HttpErrorResponse} from '@angular/common/http'
 
 @Component({
   selector: 'app-edit-user',
@@ -18,7 +18,9 @@ export class EditUserComponent implements OnInit {
   user: UserData = new UserData();
   newRole: string;
   roles: Role[];
-
+  response:boolean = false;
+  errors: HttpErrorResponse;
+  errorsPresent: boolean;
   private routeSubscription: Subscription;
 
   constructor(private _userService: UserService, private route: ActivatedRoute, private _rolesService:RolesService)
@@ -52,11 +54,16 @@ export class EditUserComponent implements OnInit {
   updateUser(){
     this.user.Role = this.newRole
     this._userService.updateUser(this.name, this.user).subscribe(
-      res =>
-        {
-          console.log(res)
-        },
-        error => console.log(error)
+      res =>{
+        this.errorsPresent = false
+        this.response = true
+        console.log(res)
+      },
+      err => {
+        this.errors = <HttpErrorResponse>err.error.error
+        this.errorsPresent = true
+        this.response = false
+      }
     )
   }
 

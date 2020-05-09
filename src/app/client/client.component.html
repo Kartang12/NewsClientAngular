@@ -9,14 +9,16 @@
         <li class="nav-item">
           <a class="nav-link" routerLink="posts" routerLinkActive="active">Новости</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="events" routerLinkActive="active">Members</a>
-        </li>
+      </ul>
+      <ul *ngIf="loggedIn" class="navbar-nav">
+        <button class="btn-secondary" routerLink="/Change" routerLinkActive="active">Редактировать профиль</button>
+      </ul>
+      <ul *ngIf="loggedIn" class="navbar-nav">
+        <button class="btn-secondary" routerLink="/" routerLinkActive="active" (click)="logOut()">Выйти</button>
       </ul>
       <ul class="navbar-nav">
           <a *ngIf="!loggedIn" class="nav-link" routerLink="login" routerLinkActive="active">Войти</a>
-          <a *ngIf="!loggedIn" class="nav-link" routerLink="register" routerLinkActive="active">Зарегистрироваться</a>     
-          <button *ngIf="loggedIn" class="btn-secondary" routerLink="/" routerLinkActive="active" (click)="logOut()">Выйти</button>     
+          <a *ngIf="!loggedIn" class="nav-link" routerLink="register" routerLinkActive="active">Зарегистрироваться</a>   
       </ul>
     </div>
   </nav>    

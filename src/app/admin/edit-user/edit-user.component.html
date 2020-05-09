@@ -8,22 +8,28 @@
               <h3 class="mb-0">Редактирование данных пользователя</h3>
             </div>
             <div class="card-body">
-              <form class="form">
+              <form ngNativeValidate>
                 <div class="form-group">
                   <label >Текущее имя (eMail): {{user.Name}}</label>
-                  <input type="email" [(ngModel)]="user.Name" name="name" class="form-control rounded-0" required>
+                  <input type="email" [(ngModel)]="user.Name" name="name" class="form-control rounded-0" required/>
                 </div>
                 <div class="form-group">
                   <label>Текущая роль: {{user.Role}}</label>
-                  <select class="form-control" [(ngModel)]="newRole" name="newRole">
+                  <select class="form-control" [(ngModel)]="newRole" name="newRole" required>
                     <option *ngFor="let role of roles" [value]="role.name">{{role.name}}</option>
                   </select>
                 </div>
-                <button type="button" (click)="updateUser()" class="btn btn-primary float-right">Изменить</button>
+                <button type="submit" (click)="updateUser()" class="btn btn-primary float-rightw=">Изменить</button>
               </form>
             </div>
           </div>
         </form>
+        <div *ngIf="errorsPresent">
+          <p style="color:red"> {{errors}}</p>
+        </div>
+        <div *ngIf="response">
+          <p style="color:green">Пользователь успешно изменен</p>
+        </div>
       </div>
     </div>
   </div>

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
+import { Router } from '@angular/router';
 
-
-import {HttpResponseBase} from '@angular/common/http'
+import {HttpResponseBase, HttpErrorResponse} from '@angular/common/http'
 import { NewUser } from '../Models/NewUser';
 
 @Component({
@@ -12,11 +12,13 @@ import { NewUser } from '../Models/NewUser';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor(private _auth: AuthService) { }
+  constructor(private _auth: AuthService, private router:Router) { }
 
   ngOnInit() {
   }
 
+  errorsPresent:boolean = false;
+  errors: HttpErrorResponse;
   newUser: NewUser = new NewUser();
 
   registerUser() {
@@ -25,9 +27,13 @@ export class RegisterComponent implements OnInit {
     .subscribe(
       res =>{ 
         localStorage.setItem('token', res.token)
+        localStorage.setItem('name', res.email)
+        localStorage.setItem('role', 'User')
+        this.router.navigate(['/Posts/posts'])
       },
       err => {
-        <HttpResponseBase>err
+        this.errors = <HttpErrorResponse>err.error.errors
+        this.errorsPresent = true
       }
     )
   }

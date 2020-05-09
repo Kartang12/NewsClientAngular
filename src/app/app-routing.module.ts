@@ -19,6 +19,7 @@ import { AdminGuard } from './admin.guard';
 import { PosterGuard } from './poster.guard';
 import { MyPostsComponent } from './poster/my-posts/my-posts.component';
 import { PostComponent } from './client/post/post.component';
+import { ChangeMeComponent } from './change-me/change-me.component';
 
 
 const posterRoutes: Routes = [
@@ -46,6 +47,7 @@ const userRoutes: Routes = [
 ];
 
 const appRoutes: Routes = [
+  { path: 'Change', component: ChangeMeComponent },
   { path: 'Posts', component: ClientComponent },
   { path: 'Posts', component: ClientComponent, children: userRoutes },
   { path: 'Poster', component: PosterComponent, canActivate: [PosterGuard] },

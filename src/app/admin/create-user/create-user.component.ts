@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../auth.service';
-import { UserService } from '../../user.service';
 import { RolesService } from 'src/app/roles.service';
 import { Role } from 'src/app/Models/Role';
 import { NewUser } from 'src/app/Models/NewUser';
 import {HttpErrorResponse} from '@angular/common/http'
-import {HttpResponseBase} from '@angular/common/http'
 
 @Component({
   selector: 'app-create-user',
@@ -16,6 +14,7 @@ export class CreateUserComponent implements OnInit {
 
   constructor(private _auth: AuthService, private _rolesService: RolesService) { }
 
+  response:boolean = false;
   newRole: string;
   newUser: NewUser = new NewUser();
   roles: Role[];
@@ -36,7 +35,7 @@ export class CreateUserComponent implements OnInit {
     this._auth.registerUser(this.newUser)
     .subscribe(
       res =>{ 
-        console.log(res)
+        this.response = true
       },
       err => {
         console.log(err)

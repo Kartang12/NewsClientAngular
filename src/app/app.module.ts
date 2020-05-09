@@ -19,7 +19,8 @@ import { UsersTableComponent } from './admin/users-table/users-table.component';
 import { EditUserComponent } from './admin/edit-user/edit-user.component';
 import { CreateUserComponent } from './admin/create-user/create-user.component';
 import { MyPostsComponent } from './poster/my-posts/my-posts.component';
-import { PostComponent } from './client/post/post.component'
+import { PostComponent } from './client/post/post.component';
+import { ChangeMeComponent } from './change-me/change-me.component'
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { PostComponent } from './client/post/post.component'
     EditUserComponent,
     CreateUserComponent,
     MyPostsComponent,
-    PostComponent
+    PostComponent,
+    ChangeMeComponent
   ],
   imports: [
     BrowserModule,
